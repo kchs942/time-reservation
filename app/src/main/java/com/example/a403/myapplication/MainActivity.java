@@ -49,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+          calen.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  l1.setVisibility(View.VISIBLE);
+                  date.setVisibility(View.VISIBLE);
+                  timeview.setVisibility(View.INVISIBLE);
+
+              }
+          });
+
+          time.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  l1.setVisibility(View.VISIBLE);
+                  date.setVisibility(View.INVISIBLE);
+                  timeview.setVisibility(View.VISIBLE);
+              }
+          });
 
 
     }
