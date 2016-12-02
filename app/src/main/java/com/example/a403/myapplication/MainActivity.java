@@ -1,6 +1,11 @@
 package com.example.a403.myapplication;
 
+import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
+import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     CalendarView date;
     TimePicker timeview;
     TextView result;
-
+    int year;
+    int month;
+    int day;
 
 
 
@@ -42,10 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chro1.setBase(SystemClock.elapsedRealtime());
                 chro1.start();
+                chro1.setTextColor(Color.RED);
             }
         });
 
@@ -68,6 +78,28 @@ public class MainActivity extends AppCompatActivity {
               }
           });
 
+        date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
+                year=i;
+                month=i1;
+                day=i2;
 
+            }
+        });
+         finish.setOnClickListener(new View.OnClickListener() {
+             @RequiresApi(api = Build.VERSION_CODES.N)
+             @Override
+             public void onClick(View view) {
+
+                 String str2,str3;
+                      chro1.stop();
+                      chro1.setTextColor(Color.BLUE);
+
+                       str2=Integer.toString(timeview.getCurrentHour());
+                       str3=Integer.toString(timeview.getMinute());
+                 result.setText(year+"년"+month+"월"+day+"일"+str2+"시"+str3+"분"+"에약됨");
+             }
+         });
     }
 }
